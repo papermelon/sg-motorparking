@@ -1,0 +1,51 @@
+// PostgreSQL schema for Vercel/Supabase deployment
+// Copy this to schema.prisma when deploying to production
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL") // For Supabase connection pooling
+}
+
+model Carpark {
+  id                String   @id @default(cuid())
+  name              String
+  address           String
+  town              String?
+  lat               Float
+  lng               Float
+  type              String   // HDB, MALL, OFFICE, PUBLIC, OTHER
+  motorcycleAllowed Boolean  @default(true)
+  carAllowed        Boolean  @default(true)
+  totalMotoLots     Int?
+  covered           Boolean?
+  seasonOnly        Boolean?
+  pricingNotes      String?
+  openingHours      String?
+  entranceNotes     String?
+  verified          Boolean  @default(false)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  photos Photo[]
+
+  @@index([lat, lng])
+  @@index([verified])
+}
+
+model Photo {
+  id        String    @id @default(cuid())
+  carparkId String
+  url       String
+  caption   String?
+  takenAt   DateTime?
+  createdAt DateTime  @default(now())
+
+  carpark Carpark @relation(fields: [carparkId], references: [id], onDelete: Cascade)
+
+  @@index([carparkId])
+}

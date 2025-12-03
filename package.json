@@ -6,10 +6,20 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "next lint",
+    "db:migrate": "prisma migrate dev",
+    "db:generate": "prisma generate",
+    "db:seed": "tsx prisma/seed.ts",
+    "db:studio": "prisma studio"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
   },
   "dependencies": {
+    "@prisma/client": "^5.22.0",
+    "@react-google-maps/api": "^2.20.7",
     "next": "16.0.7",
+    "prisma": "^5.22.0",
     "react": "19.2.0",
     "react-dom": "19.2.0"
   },
@@ -21,6 +31,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.0.7",
     "tailwindcss": "^4",
+    "tsx": "^4.21.0",
     "typescript": "^5"
   }
 }
