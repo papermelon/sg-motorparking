@@ -15,8 +15,12 @@ A web app to help Singapore users find motorcycle parking locations. Built with 
 
 - **Frontend**: Next.js 16, TypeScript, Tailwind CSS
 - **Maps**: @react-google-maps/api
-- **Database**: SQLite with Prisma ORM
+- **Database**: PostgreSQL (Supabase) / SQLite for local dev
 - **APIs**: Google Maps Geocoding API
+
+## Live Demo
+
+🚀 [https://sg-motopark.vercel.app](https://sg-motopark.vercel.app) (update after deployment)
 
 ## Quick Start
 
