@@ -5,6 +5,7 @@ generator client {
   provider = "prisma-client-js"
 }
 
+// PostgreSQL for production (Supabase)
 datasource db {
   provider  = "postgresql"
   url       = env("DATABASE_URL")
