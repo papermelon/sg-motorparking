@@ -148,7 +148,7 @@ Your connection strings should look like this (replace values):
 
    **Variable 3:**
    - **Name:** `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY`
-   - **Value:** `AIzaSyC99jW79i694NVAfLAkPNe1TjNP4gF4mco`
+   - **Value:** Your Google Maps API key (from Google Cloud Console)
    - **Environment:** Check all three: Production, Preview, Development
    - **Click:** **"Save"**
 
@@ -170,7 +170,7 @@ Your connection strings should look like this (replace values):
 **WHERE:** Google Cloud Console (web browser)
 
 1. **Open:** https://console.cloud.google.com/apis/credentials
-2. **Click:** Your API key (the one that shows `AIzaSyC99jW79i694NVAfLAkPNe1TjNP4gF4mco`)
+2. **Click:** Your API key
 3. **Scroll to:** **"Application restrictions"** section
 4. **Select:** **"HTTP referrers (web sites)"**
 5. **Click:** **"Add an item"**
