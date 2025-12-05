@@ -22,6 +22,10 @@ A web app to help Singapore users find motorcycle parking locations. Built with 
 
 🚀 [https://sg-motopark.vercel.app](https://sg-motopark.vercel.app) (update after deployment)
 
+## Deployment
+
+📖 See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed instructions on deploying to Vercel with Supabase.
+
 ## Quick Start
 
 ### Prerequisites

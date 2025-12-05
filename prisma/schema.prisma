@@ -5,7 +5,8 @@ generator client {
   provider = "prisma-client-js"
 }
 
-// PostgreSQL for production (Supabase)
+// PostgreSQL for production (Supabase/Vercel)
+// For local development with SQLite, temporarily change provider to "sqlite"
 datasource db {
   provider  = "postgresql"
   url       = env("DATABASE_URL")
