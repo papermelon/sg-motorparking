@@ -124,7 +124,7 @@ CREATE INDEX "Carpark_verified_idx" ON "Carpark"("verified");
    |------|-------|
    | `DATABASE_URL` | Your Supabase transaction pooler connection string (port 6543) |
    | `DIRECT_URL` | Your Supabase direct connection string (port 5432) |
-   | `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY` | `AIzaSyAKh8FxDvv6RwVd1sU1QzHeQIsOP18Zcng` |
+   | `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY` | `AIzaSyC99jW79i694NVAfLAkPNe1TjNP4gF4mco` |
 
    **Make sure to:**
    - Add these for **Production**, **Preview**, and **Development** environments
