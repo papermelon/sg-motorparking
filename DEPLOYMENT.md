@@ -1,6 +1,6 @@
 # Deployment Guide - Vercel + Supabase
 
-This guide walks you through deploying SG MotoPark to Vercel with Supabase as the database.
+This guide walks you through deploying SG Motorbike Parking to Vercel with Supabase as the database.
 
 ## Prerequisites
 
@@ -118,13 +118,16 @@ CREATE INDEX "Carpark_verified_idx" ON "Carpark"("verified");
 
 5. **⚠️ CRITICAL: Add Environment Variables**
    
-   Before clicking "Deploy", click **"Environment Variables"** and add these three:
+   Before clicking "Deploy", click **"Environment Variables"** and add these four:
 
    | Name | Value |
    |------|-------|
    | `DATABASE_URL` | Your Supabase transaction pooler connection string (port 6543) |
    | `DIRECT_URL` | Your Supabase direct connection string (port 5432) |
-   | `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY` | Your Google Maps API key |
+   | `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY` | Your Google Maps API key (for frontend map) |
+   | `GOOGLE_MAPS_API_KEY` | Your Google Maps API key (for server-side geocoding) |
+
+   **Note:** You can use the same API key for both `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY` and `GOOGLE_MAPS_API_KEY`.
 
    **Make sure to:**
    - Add these for **Production**, **Preview**, and **Development** environments
@@ -136,22 +139,31 @@ CREATE INDEX "Carpark_verified_idx" ON "Carpark"("verified");
 
 ---
 
-## Step 4: Update Google Maps API Key Restrictions
+## Step 4: Configure Google Maps API Key Restrictions
 
-After Vercel assigns your domain (e.g., `sg-motorparking.vercel.app`):
+Since your API key is used for both client-side (map display) and server-side (geocoding) requests, configure it as follows:
 
 1. Go to [Google Cloud Console → Credentials](https://console.cloud.google.com/apis/credentials)
 2. Click on your **Maps API Key**
-3. Under **"Application restrictions"** → **"HTTP referrers"**
-4. Add these entries:
-   ```
-   https://sg-motorparking.vercel.app/*
-   https://*.vercel.app/*
-   http://localhost:3000/*
-   http://localhost:3001/*
-   ```
-   (Replace `sg-motorparking` with your actual Vercel domain)
-5. Click **Save**
+
+3. **Application restrictions:**
+   - Select **"None"** (required for server-side geocoding API calls)
+   - Note: HTTP referrer restrictions block server-side requests
+
+4. **API restrictions:**
+   - Select **"Restrict key"**
+   - Click **"Select APIs"**
+   - Enable only:
+     - ✅ **Geocoding API** (for server-side address lookup)
+     - ✅ **Maps JavaScript API** (for frontend map display)
+   - Click **Save** on the API selection dialog
+
+5. Click **Save** at the bottom of the page
+
+**Important:** Make sure the **Geocoding API** is enabled in your Google Cloud project:
+- Go to [APIs & Services → Library](https://console.cloud.google.com/apis/library)
+- Search for "Geocoding API"
+- Click on it and ensure it's **Enabled**
 
 ---
 

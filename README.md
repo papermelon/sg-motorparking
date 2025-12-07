@@ -1,4 +1,4 @@
-# SG MotoPark
+# SG Motorbike Parking
 
 A web app to help Singapore users find motorcycle parking locations. Built with Next.js, TypeScript, Tailwind CSS, and Prisma.
 
