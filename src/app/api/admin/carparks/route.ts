@@ -34,7 +34,7 @@ export async function POST(request: NextRequest) {
         pricingNotes: data.pricingNotes,
         openingHours: data.openingHours,
         entranceNotes: data.entranceNotes,
-        verified: false // New submissions start as unverified
+        verified: data.verified ?? true // Admin-created carparks are verified by default
       }
     })
 

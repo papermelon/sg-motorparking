@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Link from 'next/link'
 import SearchBar from '@/components/SearchBar'
 import MapView from '@/components/MapView'
 import CarparkList from '@/components/CarparkList'
@@ -138,10 +139,21 @@ function HomeContent() {
       {/* Header */}
       <header className="bg-white shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="text-center">
-            <h1 className="text-3xl font-bold text-gray-900">SG Motorbike Parking</h1>
-            <p className="mt-2 text-gray-600">Find motorcycle parking in Singapore</p>
-        </div>
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="text-center sm:text-left flex-1">
+              <h1 className="text-3xl font-bold text-gray-900">SG Motorbike Parking</h1>
+              <p className="mt-2 text-gray-600">Find motorcycle parking in Singapore</p>
+            </div>
+            
+            {/* Suggest button in header - always visible */}
+            <Link
+              href="/suggest"
+              className="inline-flex items-center gap-2 px-5 py-2.5 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700 transition-colors shadow-sm"
+            >
+              <span>+</span>
+              <span>Suggest a Location</span>
+            </Link>
+          </div>
 
           <div className="mt-6">
             <SearchBar
@@ -201,6 +213,17 @@ function HomeContent() {
                     Note: Our database is still growing. If you know of motorcycle parking spots not shown here, they may not be in our system yet.
                   </p>
                 )}
+
+                {/* Banner to suggest location */}
+                <div className="mt-4 pt-4 border-t border-gray-200">
+                  <p className="text-sm text-gray-600">
+                    Can't find your usual parking spot?{' '}
+                    <Link href="/suggest" className="text-blue-600 hover:text-blue-800 underline">
+                      Suggest it here
+                    </Link>
+                    .
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -237,12 +260,12 @@ function HomeContent() {
             </div>
             <div className="border-t pt-6">
               <p className="text-gray-500 text-sm mb-3">Know a motorcycle parking spot we're missing?</p>
-              <a
+              <Link
                 href="/suggest"
                 className="inline-block px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
               >
                 + Suggest a Location
-              </a>
+              </Link>
             </div>
         </div>
       </main>

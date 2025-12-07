@@ -52,8 +52,32 @@ export async function GET(request: NextRequest) {
     return NextResponse.json(results)
   } catch (error) {
     console.error('Carpark search error:', error)
+    
+    // Log full error details for debugging
+    if (error instanceof Error) {
+      console.error('Error message:', error.message)
+      console.error('Error stack:', error.stack)
+    }
+    
+    // Check for common database connection errors
+    const errorMessage = error instanceof Error ? error.message : String(error)
+    let userMessage = 'Failed to search carparks'
+    
+    if (errorMessage.includes('P1001') || errorMessage.includes('Can\'t reach database')) {
+      userMessage = 'Database connection failed. Please check your database configuration.'
+    } else if (errorMessage.includes('P2025') || errorMessage.includes('Record not found')) {
+      userMessage = 'Database query failed. Please check your database schema.'
+    } else if (errorMessage.includes('P2002') || errorMessage.includes('Unique constraint')) {
+      userMessage = 'Database constraint error.'
+    }
+    
+    // In development, show more details
+    const errorDetails = process.env.NODE_ENV === 'development' 
+      ? `${userMessage}: ${errorMessage}` 
+      : userMessage
+    
     return NextResponse.json(
-      { error: 'Failed to search carparks' },
+      { error: errorDetails },
       { status: 500 }
     )
   }

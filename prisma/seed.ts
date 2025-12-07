@@ -561,10 +561,13 @@ async function main() {
     }
   ]
 
-  // Insert carparks
+  // Insert carparks (all seeded carparks are marked as verified)
   for (const carparkData of carparks) {
     await prisma.carpark.create({
-      data: carparkData
+      data: {
+        ...carparkData,
+        verified: true // Mark all seeded carparks as verified
+      }
     })
   }
 

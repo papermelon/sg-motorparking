@@ -86,7 +86,7 @@ export default function AdminPage() {
     try {
       const res = await fetch('/api/admin/carparks')
       const data = await res.json()
-      setCarparks(data.filter((cp: Carpark) => cp.verified !== false))
+      setCarparks(data.filter((cp: Carpark) => cp.verified === true))
     } catch (error) {
       console.error('Failed to fetch carparks:', error)
     } finally {
