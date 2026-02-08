@@ -102,6 +102,24 @@ npm run db:studio   # Open Prisma Studio
 npm run lint        # Run ESLint
 ```
 
+## Data Ingestion (HDB)
+
+The HDB carpark pipeline uses the official CSV for deterministic imports (no API key required). Place the file at `data/raw/hdb_carpark_information.csv` (or set `HDB_CARPARK_CSV` to a custom path).
+
+Commands:
+
+```bash
+npm run data:import:hdb      # Import static HDB carpark info (lat/lng from SVY21)
+npm run data:enrich:hdb:moto # Enrich motorcycleAllowed/totalMotoLots from availability API
+npm run data:refresh:hdb     # Runs both in order
+```
+
+Notes:
+- Import sets `source=HDB`, `confidenceLevel=official`, and leaves `motorcycleAllowed` null until enriched.
+- Enrichment reads lot_type `Y` from `https://api.data.gov.sg/v1/transport/carpark-availability` and sets `motorcycleAllowed`/`totalMotoLots`; it skips updates if the API is unavailable to avoid wiping data.
+- Optional: set `DATA_GOV_API_KEY` if you have a key for the availability API.
+- On Vercel, SQLite is ephemeral; run these scripts against a persistent database (e.g., Supabase/Postgres) from your local machine or a scheduled job, not from the ephemeral build environment.
+
 ## Project Structure
 
 ```

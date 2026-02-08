@@ -283,20 +283,20 @@ export default function AdminPage() {
   }, [carparks])
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen bg-slate-900 py-8">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex justify-between items-center mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Admin: Manage Carparks</h1>
-            <p className="text-gray-600 mt-1">Add, edit, or remove motorcycle parking locations</p>
+            <h1 className="text-3xl font-bold text-white">Admin: Manage Carparks</h1>
+            <p className="text-slate-300 mt-1">Add, edit, or remove motorcycle parking locations</p>
           </div>
           <div className="space-x-2">
-            <a href="/" className="px-4 py-2 text-gray-600 hover:text-gray-800">
+            <a href="/" className="px-4 py-2 text-slate-300 hover:text-white transition-colors">
               ← Back to App
             </a>
             <button
               onClick={() => { resetForm(); setShowForm(!showForm); setActiveTab('verified') }}
-              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500 transition-all shadow-lg shadow-blue-500/20"
             >
               {showForm ? 'Cancel' : '+ Add Carpark'}
             </button>
@@ -304,30 +304,30 @@ export default function AdminPage() {
         </div>
 
         {message && (
-          <div className={`mb-4 p-3 rounded-lg ${message.type === 'success' ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-700'}`}>
+          <div className={`mb-4 p-3 rounded-lg ${message.type === 'success' ? 'bg-emerald-900/30 text-emerald-300 border border-emerald-700/50' : 'bg-red-900/30 text-red-300 border border-red-700/50'}`}>
             {message.text}
           </div>
         )}
 
         {/* Tabs */}
-        <div className="flex border-b mb-6">
+        <div className="flex border-b border-slate-700/50 mb-6">
           <button
             onClick={() => setActiveTab('verified')}
-            className={`px-6 py-3 font-medium ${activeTab === 'verified' 
-              ? 'text-blue-600 border-b-2 border-blue-600' 
-              : 'text-gray-500 hover:text-gray-700'}`}
+            className={`px-6 py-3 font-medium transition-colors ${activeTab === 'verified' 
+              ? 'text-blue-400 border-b-2 border-blue-400' 
+              : 'text-slate-400 hover:text-slate-300'}`}
           >
             ✓ Verified ({carparks.length})
           </button>
           <button
             onClick={() => setActiveTab('pending')}
-            className={`px-6 py-3 font-medium ${activeTab === 'pending' 
-              ? 'text-blue-600 border-b-2 border-blue-600' 
-              : 'text-gray-500 hover:text-gray-700'}`}
+            className={`px-6 py-3 font-medium transition-colors ${activeTab === 'pending' 
+              ? 'text-blue-400 border-b-2 border-blue-400' 
+              : 'text-slate-400 hover:text-slate-300'}`}
           >
             ⏳ Pending Review ({pendingSuggestions.length})
             {pendingSuggestions.length > 0 && (
-              <span className="ml-2 px-2 py-0.5 bg-yellow-100 text-yellow-800 rounded-full text-xs">
+              <span className="ml-2 px-2 py-0.5 bg-yellow-500/20 text-yellow-300 border border-yellow-500/30 rounded-full text-xs">
                 {pendingSuggestions.length}
               </span>
             )}
@@ -336,21 +336,21 @@ export default function AdminPage() {
 
         {/* Add/Edit Form */}
         {showForm && activeTab === 'verified' && (
-          <div className="bg-white rounded-lg shadow-sm border p-6 mb-6">
-            <h2 className="text-lg font-semibold mb-4">{editingId ? 'Edit Carpark' : 'Add New Carpark'}</h2>
+          <div className="bg-slate-800 rounded-xl shadow-2xl border border-slate-700/50 p-6 mb-6">
+            <h2 className="text-lg font-semibold text-white mb-4">{editingId ? 'Edit Carpark' : 'Add New Carpark'}</h2>
             <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Name *</label>
+                <label className="block text-sm font-medium text-slate-300 mb-1">Name *</label>
                 <input type="text" required value={formData.name}
                   onChange={e => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 bg-slate-700/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   placeholder="e.g., Bukit Batok MRT Motorcycle Parking" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Town *</label>
+                <label className="block text-sm font-medium text-slate-300 mb-1">Town *</label>
                 <select required value={formData.town}
                   onChange={e => setFormData({ ...formData, town: e.target.value })}
-                  className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500">
+                  className="w-full px-3 py-2 bg-slate-700/50 border border-slate-600 rounded-lg text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                   <option value="">Select Town</option>
                   {SINGAPORE_TOWNS.filter(t => t !== 'All Towns').map(town => (
                     <option key={town} value={town}>{town}</option>
@@ -358,28 +358,28 @@ export default function AdminPage() {
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Address *</label>
+                <label className="block text-sm font-medium text-slate-300 mb-1">Address *</label>
                 <input type="text" required value={formData.address}
                   onChange={e => setFormData({ ...formData, address: e.target.value })}
-                  className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500" />
+                  className="w-full px-3 py-2 bg-slate-700/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Latitude *</label>
+                <label className="block text-sm font-medium text-slate-300 mb-1">Latitude *</label>
                 <input type="number" step="any" required value={formData.lat}
                   onChange={e => setFormData({ ...formData, lat: e.target.value })}
-                  className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500" />
+                  className="w-full px-3 py-2 bg-slate-700/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Longitude *</label>
+                <label className="block text-sm font-medium text-slate-300 mb-1">Longitude *</label>
                 <input type="number" step="any" required value={formData.lng}
                   onChange={e => setFormData({ ...formData, lng: e.target.value })}
-                  className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500" />
+                  className="w-full px-3 py-2 bg-slate-700/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Type</label>
+                <label className="block text-sm font-medium text-slate-300 mb-1">Type</label>
                 <select value={formData.type}
                   onChange={e => setFormData({ ...formData, type: e.target.value })}
-                  className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500">
+                  className="w-full px-3 py-2 bg-slate-700/50 border border-slate-600 rounded-lg text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                   <option value="HDB">HDB</option>
                   <option value="MALL">Mall</option>
                   <option value="OFFICE">Office</option>
@@ -388,22 +388,22 @@ export default function AdminPage() {
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Total Moto Lots</label>
+                <label className="block text-sm font-medium text-slate-300 mb-1">Total Moto Lots</label>
                 <input type="number" value={formData.totalMotoLots}
                   onChange={e => setFormData({ ...formData, totalMotoLots: e.target.value })}
-                  className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500" />
+                  className="w-full px-3 py-2 bg-slate-700/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Pricing Notes</label>
+                <label className="block text-sm font-medium text-slate-300 mb-1">Pricing Notes</label>
                 <input type="text" value={formData.pricingNotes}
                   onChange={e => setFormData({ ...formData, pricingNotes: e.target.value })}
-                  className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500" />
+                  className="w-full px-3 py-2 bg-slate-700/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
               </div>
               <div className="flex items-center space-x-4">
                 <label className="flex items-center">
                   <input type="checkbox" checked={formData.motorcycleAllowed}
                     onChange={e => setFormData({ ...formData, motorcycleAllowed: e.target.checked })}
-                    className="mr-2" /> Moto
+                    className="mr-2" /> Motorcycle
                 </label>
                 <label className="flex items-center">
                   <input type="checkbox" checked={formData.carAllowed}
@@ -417,19 +417,19 @@ export default function AdminPage() {
                 </label>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Photo 1 URL</label>
+                <label className="block text-sm font-medium text-slate-300 mb-1">Photo 1 URL</label>
                 <input type="url" value={formData.photoUrl1}
                   onChange={e => setFormData({ ...formData, photoUrl1: e.target.value })}
-                  className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500" />
+                  className="w-full px-3 py-2 bg-slate-700/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Photo 2 URL</label>
+                <label className="block text-sm font-medium text-slate-300 mb-1">Photo 2 URL</label>
                 <input type="url" value={formData.photoUrl2}
                   onChange={e => setFormData({ ...formData, photoUrl2: e.target.value })}
-                  className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500" />
+                  className="w-full px-3 py-2 bg-slate-700/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
               </div>
               <div className="lg:col-span-3">
-                <button type="submit" className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                <button type="submit" className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500 transition-all shadow-lg shadow-blue-500/20">
                   {editingId ? 'Update Carpark' : 'Add Carpark'}
                 </button>
               </div>
@@ -441,24 +441,24 @@ export default function AdminPage() {
         {activeTab === 'pending' && (
           <div className="space-y-4">
             {pendingSuggestions.length === 0 ? (
-              <div className="bg-white rounded-lg shadow-sm border p-8 text-center text-gray-500">
+              <div className="bg-slate-800 rounded-xl shadow-2xl border border-slate-700/50 p-8 text-center text-slate-400">
                 No pending suggestions to review.
               </div>
             ) : (
               pendingSuggestions.map(suggestion => (
-                <div key={suggestion.id} className="bg-white rounded-lg shadow-sm border p-6">
+                <div key={suggestion.id} className="bg-slate-800 rounded-xl shadow-2xl border border-slate-700/50 p-6">
                   <div className="flex justify-between items-start">
                     <div className="flex-1">
-                      <h3 className="font-semibold text-lg">{suggestion.name}</h3>
-                      <p className="text-gray-600">{suggestion.address}</p>
+                      <h3 className="font-semibold text-lg text-white">{suggestion.name}</h3>
+                      <p className="text-slate-300">{suggestion.address}</p>
                       <div className="flex flex-wrap gap-2 mt-2">
-                        <span className="px-2 py-1 bg-gray-100 rounded text-xs">{suggestion.town}</span>
-                        <span className="px-2 py-1 bg-gray-100 rounded text-xs">{suggestion.type}</span>
+                        <span className="px-2 py-1 bg-slate-700/50 border border-slate-600 rounded text-xs text-slate-300">{suggestion.town}</span>
+                        <span className="px-2 py-1 bg-slate-700/50 border border-slate-600 rounded text-xs text-slate-300">{suggestion.type}</span>
                         {suggestion.totalMotoLots && (
-                          <span className="px-2 py-1 bg-gray-100 rounded text-xs">{suggestion.totalMotoLots} lots</span>
+                          <span className="px-2 py-1 bg-slate-700/50 border border-slate-600 rounded text-xs text-slate-300">{suggestion.totalMotoLots} lots</span>
                         )}
                         {suggestion.pricingNotes && (
-                          <span className="px-2 py-1 bg-gray-100 rounded text-xs">{suggestion.pricingNotes}</span>
+                          <span className="px-2 py-1 bg-slate-700/50 border border-slate-600 rounded text-xs text-slate-300">{suggestion.pricingNotes}</span>
                         )}
                       </div>
                       {suggestion.photos && suggestion.photos.length > 0 && (
@@ -469,26 +469,26 @@ export default function AdminPage() {
                           ))}
                         </div>
                       )}
-                      <p className="text-xs text-gray-400 mt-2">
+                      <p className="text-xs text-slate-400 mt-2">
                         Coords: {suggestion.lat}, {suggestion.lng}
                       </p>
                     </div>
                     <div className="flex gap-2 ml-4">
                       <button
                         onClick={() => handleApprove(suggestion)}
-                        className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 text-sm"
+                        className="px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-500 text-sm transition-all shadow-lg shadow-emerald-500/20"
                       >
                         ✓ Approve
                       </button>
                       <button
                         onClick={() => handleEdit(suggestion)}
-                        className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm"
+                        className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500 text-sm transition-all shadow-lg shadow-blue-500/20"
                       >
                         Edit & Approve
                       </button>
                       <button
                         onClick={() => handleReject(suggestion.id)}
-                        className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 text-sm"
+                        className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-500 text-sm transition-all shadow-lg shadow-red-500/20"
                       >
                         ✗ Reject
                       </button>
@@ -504,19 +504,19 @@ export default function AdminPage() {
         {activeTab === 'verified' && !showForm && (
           <>
             {/* Filters & Search */}
-            <div className="bg-white rounded-lg shadow-sm border p-4 mb-4">
+            <div className="bg-slate-800 rounded-xl shadow-2xl border border-slate-700/50 p-4 mb-4">
               <div className="flex flex-wrap gap-4 items-center">
                 <div className="flex-1 min-w-[200px]">
                   <input type="text" placeholder="Search by name or address..."
                     value={searchQuery} onChange={e => setSearchQuery(e.target.value)}
-                    className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500" />
+                    className="w-full px-3 py-2 bg-slate-700/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
                 </div>
                 <select value={filterTown} onChange={e => setFilterTown(e.target.value)}
-                  className="px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500">
+                  className="px-3 py-2 bg-slate-700/50 border border-slate-600 rounded-lg text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                   {uniqueTowns.map(town => <option key={town} value={town}>{town}</option>)}
                 </select>
                 <select value={filterType} onChange={e => setFilterType(e.target.value)}
-                  className="px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500">
+                  className="px-3 py-2 bg-slate-700/50 border border-slate-600 rounded-lg text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                   <option value="All Types">All Types</option>
                   <option value="HDB">HDB</option>
                   <option value="MALL">Mall</option>
@@ -524,57 +524,57 @@ export default function AdminPage() {
                   <option value="OFFICE">Office</option>
                   <option value="OTHER">Other</option>
                 </select>
-                <span className="text-sm text-gray-500">
+                <span className="text-sm text-slate-400">
                   {filteredAndSortedCarparks.length} of {carparks.length}
                 </span>
               </div>
             </div>
 
             {/* Carparks Table */}
-            <div className="bg-white rounded-lg shadow-sm border">
+            <div className="bg-slate-800 rounded-xl shadow-2xl border border-slate-700/50">
               {isLoading ? (
-                <div className="p-8 text-center text-gray-500">Loading...</div>
+                <div className="p-8 text-center text-slate-400">Loading...</div>
               ) : (
                 <div className="overflow-x-auto">
                   <table className="w-full text-sm">
-                    <thead className="bg-gray-50">
+                    <thead className="bg-slate-700/50">
                       <tr>
-                        <th className="px-4 py-3 text-left cursor-pointer hover:bg-gray-100"
+                        <th className="px-4 py-3 text-left cursor-pointer hover:bg-slate-700 text-slate-300"
                           onClick={() => handleSort('name')}>Name {getSortIcon('name')}</th>
-                        <th className="px-4 py-3 text-left cursor-pointer hover:bg-gray-100"
+                        <th className="px-4 py-3 text-left cursor-pointer hover:bg-slate-700 text-slate-300"
                           onClick={() => handleSort('town')}>Town {getSortIcon('town')}</th>
-                        <th className="px-4 py-3 text-left cursor-pointer hover:bg-gray-100"
+                        <th className="px-4 py-3 text-left cursor-pointer hover:bg-slate-700 text-slate-300"
                           onClick={() => handleSort('type')}>Type {getSortIcon('type')}</th>
-                        <th className="px-4 py-3 text-left">Moto/Car</th>
-                        <th className="px-4 py-3 text-left cursor-pointer hover:bg-gray-100"
+                        <th className="px-4 py-3 text-left text-slate-300">Motorcycle/Car</th>
+                        <th className="px-4 py-3 text-left cursor-pointer hover:bg-slate-700 text-slate-300"
                           onClick={() => handleSort('totalMotoLots')}>Lots {getSortIcon('totalMotoLots')}</th>
-                        <th className="px-4 py-3 text-left">Actions</th>
+                        <th className="px-4 py-3 text-left text-slate-300">Actions</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y">
+                    <tbody className="divide-y divide-slate-700/50">
                       {filteredAndSortedCarparks.map(carpark => (
-                        <tr key={carpark.id} className="hover:bg-gray-50">
-                          <td className="px-4 py-3 font-medium">{carpark.name}</td>
-                          <td className="px-4 py-3 text-gray-600">{carpark.town || '-'}</td>
+                        <tr key={carpark.id} className="hover:bg-slate-700/30">
+                          <td className="px-4 py-3 font-medium text-white">{carpark.name}</td>
+                          <td className="px-4 py-3 text-slate-300">{carpark.town || '-'}</td>
                           <td className="px-4 py-3">
-                            <span className={`px-2 py-1 rounded text-xs ${
-                              carpark.type === 'HDB' ? 'bg-blue-100 text-blue-800' :
-                              carpark.type === 'MALL' ? 'bg-purple-100 text-purple-800' :
-                              carpark.type === 'PUBLIC' ? 'bg-green-100 text-green-800' :
-                              'bg-gray-100 text-gray-800'}`}>
+                            <span className={`px-2 py-1 rounded text-xs border ${
+                              carpark.type === 'HDB' ? 'bg-blue-500/20 text-blue-300 border-blue-500/30' :
+                              carpark.type === 'MALL' ? 'bg-purple-500/20 text-purple-300 border-purple-500/30' :
+                              carpark.type === 'PUBLIC' ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30' :
+                              'bg-slate-600/50 text-slate-300 border-slate-600'}`}>
                               {carpark.type}
                             </span>
                           </td>
-                          <td className="px-4 py-3">
+                          <td className="px-4 py-3 text-white">
                             {carpark.motorcycleAllowed ? '🏍️' : ''} 
                             {carpark.carAllowed ? '🚗' : ''}
                           </td>
-                          <td className="px-4 py-3">{carpark.totalMotoLots || '-'}</td>
+                          <td className="px-4 py-3 text-slate-300">{carpark.totalMotoLots || '-'}</td>
                           <td className="px-4 py-3">
                             <button onClick={() => handleEdit(carpark)}
-                              className="text-blue-600 hover:text-blue-800 mr-3">Edit</button>
+                              className="text-blue-400 hover:text-blue-300 mr-3 transition-colors">Edit</button>
                             <button onClick={() => handleDelete(carpark.id)}
-                              className="text-red-600 hover:text-red-800">Delete</button>
+                              className="text-red-400 hover:text-red-300 transition-colors">Delete</button>
                           </td>
                         </tr>
                       ))}
@@ -587,12 +587,12 @@ export default function AdminPage() {
         )}
 
         {/* Link to Suggest Page */}
-        <div className="mt-8 bg-blue-50 border border-blue-200 rounded-lg p-6">
-          <h3 className="font-semibold text-blue-900 mb-2">📢 Share with the Community</h3>
-          <p className="text-sm text-blue-800 mb-3">
+        <div className="mt-8 bg-blue-500/10 border border-blue-500/30 rounded-xl p-6">
+          <h3 className="font-semibold text-blue-300 mb-2">📢 Share with the Community</h3>
+          <p className="text-sm text-blue-200 mb-3">
             Anyone can suggest new motorcycle parking locations at:
           </p>
-          <code className="bg-blue-100 px-3 py-1 rounded text-blue-900">
+          <code className="bg-slate-800 px-3 py-1 rounded text-blue-300 border border-slate-700/50">
             {typeof window !== 'undefined' ? window.location.origin : ''}/suggest
           </code>
         </div>

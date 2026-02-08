@@ -18,24 +18,33 @@ export async function GET() {
 export async function POST(request: NextRequest) {
   try {
     const data = await request.json()
+
+    const payload: any = {
+      name: data.name,
+      address: data.address,
+      town: data.town,
+      lat: data.lat,
+      lng: data.lng,
+      type: data.type,
+      source: data.source ?? 'COMMUNITY',
+      confidenceLevel: data.confidenceLevel ?? 'community',
+      motorcycleAllowed: data.motorcycleAllowed ?? null,
+      carAllowed: data.carAllowed ?? true,
+      totalMotoLots: data.totalMotoLots ?? null,
+      covered: data.covered,
+      pricingNotes: data.pricingNotes,
+      openingHours: data.openingHours,
+      entranceNotes: data.entranceNotes,
+      verified: data.verified ?? true, // Admin-created carparks are verified by default
+      lastAvailabilitySyncAt: data.lastAvailabilitySyncAt ?? null
+    }
+
+    if (data.externalId) {
+      payload.externalId = data.externalId
+    }
     
     const carpark = await prisma.carpark.create({
-      data: {
-        name: data.name,
-        address: data.address,
-        town: data.town,
-        lat: data.lat,
-        lng: data.lng,
-        type: data.type,
-        motorcycleAllowed: data.motorcycleAllowed ?? true,
-        carAllowed: data.carAllowed ?? true,
-        totalMotoLots: data.totalMotoLots,
-        covered: data.covered,
-        pricingNotes: data.pricingNotes,
-        openingHours: data.openingHours,
-        entranceNotes: data.entranceNotes,
-        verified: data.verified ?? true // Admin-created carparks are verified by default
-      }
+      data: payload
     })
 
     return NextResponse.json(carpark, { status: 201 })

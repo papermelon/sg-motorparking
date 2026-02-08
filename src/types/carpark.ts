@@ -1,16 +1,21 @@
 export type CarparkType = 'HDB' | 'MALL' | 'OFFICE' | 'PUBLIC' | 'OTHER'
+export type CarparkSource = 'HDB' | 'COMMUNITY' | 'INFERRED'
+export type ConfidenceLevel = 'official' | 'community' | 'inferred'
 
 export interface Carpark {
   id: string
+  externalId: string
   name: string
   address: string
   town?: string
   lat: number
   lng: number
   type: CarparkType
-  motorcycleAllowed: boolean
+  source: CarparkSource
+  confidenceLevel: ConfidenceLevel
+  motorcycleAllowed?: boolean | null
   carAllowed: boolean
-  totalMotoLots?: number
+  totalMotoLots?: number | null
   covered?: boolean
   seasonOnly?: boolean
   pricingNotes?: string
@@ -19,6 +24,7 @@ export interface Carpark {
   verified?: boolean
   createdAt: string
   updatedAt: string
+  lastAvailabilitySyncAt?: string | null
   photos: Photo[]
   distance?: number // Added by API for search results
 }

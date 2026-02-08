@@ -47,3 +47,6 @@ prisma/dev.db
 prisma/dev.db-journal
 *.db
 *.db-journal
+
+# Raw data files (CSV)
+data/raw/

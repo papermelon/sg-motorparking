@@ -5,6 +5,18 @@ generator client {
   provider = "prisma-client-js"
 }
 
+enum Source {
+  HDB
+  COMMUNITY
+  INFERRED
+}
+
+enum ConfidenceLevel {
+  official
+  community
+  inferred
+}
+
 // PostgreSQL for production (Supabase/Vercel)
 // For local development with SQLite, temporarily change provider to "sqlite"
 datasource db {
@@ -14,24 +26,28 @@ datasource db {
 }
 
 model Carpark {
-  id                String   @id @default(cuid())
-  name              String
-  address           String
-  town              String?  // e.g., "Bukit Batok", "Yishun", "Orchard"
-  lat               Float
-  lng               Float
-  type              String   // HDB, MALL, OFFICE, PUBLIC, OTHER
-  motorcycleAllowed Boolean
-  carAllowed        Boolean
-  totalMotoLots     Int?
-  covered           Boolean?
-  seasonOnly        Boolean?
-  pricingNotes      String?
-  openingHours      String?
-  entranceNotes     String?
-  verified          Boolean  @default(false) // For crowd-sourced moderation
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @updatedAt
+  id                     String   @id @default(cuid())
+  externalId             String   @unique @default(cuid()) // HDB carpark number or generated ID
+  name                   String
+  address                String
+  town                   String?  // e.g., "Bukit Batok", "Yishun", "Orchard"
+  lat                    Float
+  lng                    Float
+  type                   String   // HDB, MALL, OFFICE, PUBLIC, OTHER
+  source                 Source   @default(COMMUNITY)
+  confidenceLevel        ConfidenceLevel @default(community)
+  motorcycleAllowed      Boolean?
+  carAllowed             Boolean  @default(true)
+  totalMotoLots          Int?
+  covered                Boolean?
+  seasonOnly             Boolean?
+  pricingNotes           String?
+  openingHours           String?
+  entranceNotes          String?
+  verified               Boolean  @default(false) // For crowd-sourced moderation
+  lastAvailabilitySyncAt DateTime?
+  createdAt              DateTime @default(now())
+  updatedAt              DateTime @updatedAt
 
   photos Photo[]
 }

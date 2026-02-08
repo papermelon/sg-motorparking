@@ -11,7 +11,10 @@
     "db:migrate": "prisma migrate dev",
     "db:generate": "prisma generate",
     "db:seed": "tsx prisma/seed.ts",
-    "db:studio": "prisma studio"
+    "db:studio": "prisma studio",
+    "data:import:hdb": "tsx scripts/import-hdb-carparks.ts",
+    "data:enrich:hdb:moto": "tsx scripts/enrich-hdb-motorcycle.ts",
+    "data:refresh:hdb": "npm run data:import:hdb && npm run data:enrich:hdb:moto"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
@@ -19,8 +22,10 @@
   "dependencies": {
     "@prisma/client": "^5.22.0",
     "@react-google-maps/api": "^2.20.7",
-    "next": "16.0.10",
+    "csv-parse": "^5.6.0",
+    "next": "16.0.7",
     "prisma": "^5.22.0",
+    "proj4": "^2.20.2",
     "react": "19.2.0",
     "react-dom": "19.2.0"
   },

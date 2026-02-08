@@ -57,16 +57,19 @@ export default function MapView({ center, carparks, selectedCarparkId, onSelectC
 
   if (loadError) {
     return (
-      <div className="w-full h-[400px] flex items-center justify-center bg-gray-100 rounded-lg">
-        <p className="text-red-500">Error loading Google Maps. Please check your API key.</p>
+      <div className="w-full h-[400px] flex items-center justify-center bg-slate-800 rounded-lg border border-slate-700/50">
+        <p className="text-red-400">Error loading Google Maps. Please check your API key.</p>
       </div>
     )
   }
 
   if (!isLoaded) {
     return (
-      <div className="w-full h-[400px] flex items-center justify-center bg-gray-100 rounded-lg">
-        <p className="text-gray-500">Loading map...</p>
+      <div className="w-full h-[400px] flex items-center justify-center bg-slate-800 rounded-lg border border-slate-700/50">
+        <div className="text-center">
+          <div className="inline-block w-8 h-8 border-2 border-slate-500 border-t-blue-500 rounded-full animate-spin mb-3"></div>
+          <p className="text-slate-400">Loading map...</p>
+        </div>
       </div>
     )
   }
@@ -124,20 +127,20 @@ export default function MapView({ center, carparks, selectedCarparkId, onSelectC
           position={{ lat: selectedCarpark.lat, lng: selectedCarpark.lng }}
           onCloseClick={() => onSelectCarpark(null)}
         >
-          <div className="max-w-xs">
-            <h3 className="font-semibold text-gray-900">{selectedCarpark.name}</h3>
-            <p className="text-sm text-gray-600 mt-1">{selectedCarpark.address}</p>
+          <div className="max-w-xs bg-slate-800 text-white">
+            <h3 className="font-semibold text-white">{selectedCarpark.name}</h3>
+            <p className="text-sm text-slate-300 mt-1">{selectedCarpark.address}</p>
             <div className="mt-2 space-y-1">
-              <p className="text-xs text-gray-500">
-                {selectedCarpark.carAllowed ? '🚗 Car + Moto' : '🏍️ Moto only'}
+              <p className="text-xs text-slate-400">
+                {selectedCarpark.carAllowed ? '🚗 Car + Motorcycle' : '🏍️ Motorcycle only'}
               </p>
               {selectedCarpark.distance && (
-                <p className="text-xs text-gray-500">
+                <p className="text-xs text-slate-400">
                   📍 {(selectedCarpark.distance / 1000).toFixed(1)} km away
                 </p>
               )}
               {selectedCarpark.pricingNotes && (
-                <p className="text-xs text-gray-500">{selectedCarpark.pricingNotes}</p>
+                <p className="text-xs text-slate-400">{selectedCarpark.pricingNotes}</p>
               )}
             </div>
           </div>

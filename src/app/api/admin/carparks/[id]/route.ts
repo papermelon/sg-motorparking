@@ -35,24 +35,31 @@ export async function PUT(
   try {
     const data = await request.json()
 
+    const updateData: any = {
+      name: data.name,
+      address: data.address,
+      town: data.town,
+      lat: data.lat,
+      lng: data.lng,
+      type: data.type,
+      carAllowed: data.carAllowed,
+      totalMotoLots: data.totalMotoLots,
+      covered: data.covered,
+      pricingNotes: data.pricingNotes,
+      openingHours: data.openingHours,
+      entranceNotes: data.entranceNotes
+    }
+
+    if ('externalId' in data) updateData.externalId = data.externalId
+    if ('source' in data) updateData.source = data.source
+    if ('confidenceLevel' in data) updateData.confidenceLevel = data.confidenceLevel
+    if ('motorcycleAllowed' in data) updateData.motorcycleAllowed = data.motorcycleAllowed
+    if ('verified' in data) updateData.verified = data.verified
+    if ('lastAvailabilitySyncAt' in data) updateData.lastAvailabilitySyncAt = data.lastAvailabilitySyncAt
+
     const carpark = await prisma.carpark.update({
       where: { id },
-      data: {
-        name: data.name,
-        address: data.address,
-        town: data.town,
-        lat: data.lat,
-        lng: data.lng,
-        type: data.type,
-        motorcycleAllowed: data.motorcycleAllowed,
-        carAllowed: data.carAllowed,
-        totalMotoLots: data.totalMotoLots,
-        covered: data.covered,
-        pricingNotes: data.pricingNotes,
-        openingHours: data.openingHours,
-        entranceNotes: data.entranceNotes,
-        verified: data.verified
-      }
+      data: updateData
     })
 
     return NextResponse.json(carpark)

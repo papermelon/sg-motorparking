@@ -562,11 +562,28 @@ async function main() {
   ]
 
   // Insert carparks (all seeded carparks are marked as verified)
-  for (const carparkData of carparks) {
+  for (const [index, carparkData] of carparks.entries()) {
     await prisma.carpark.create({
       data: {
-        ...carparkData,
-        verified: true // Mark all seeded carparks as verified
+        externalId: carparkData.externalId ?? `SEED-${index + 1}`,
+        source: carparkData.source ?? 'COMMUNITY',
+        confidenceLevel: carparkData.confidenceLevel ?? 'community',
+        name: carparkData.name,
+        address: carparkData.address,
+        town: carparkData.town,
+        lat: carparkData.lat,
+        lng: carparkData.lng,
+        type: carparkData.type,
+        motorcycleAllowed: carparkData.motorcycleAllowed ?? true,
+        carAllowed: carparkData.carAllowed ?? true,
+        totalMotoLots: carparkData.totalMotoLots ?? null,
+        covered: carparkData.covered,
+        seasonOnly: carparkData.seasonOnly,
+        pricingNotes: carparkData.pricingNotes,
+        openingHours: carparkData.openingHours,
+        entranceNotes: carparkData.entranceNotes,
+        verified: true, // Mark all seeded carparks as verified
+        lastAvailabilitySyncAt: carparkData.lastAvailabilitySyncAt ?? null
       }
     })
   }
