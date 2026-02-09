@@ -2,13 +2,34 @@ import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
+type SeedCarpark = {
+  externalId?: string
+  source?: 'HDB' | 'COMMUNITY' | 'INFERRED'
+  confidenceLevel?: 'official' | 'community' | 'inferred'
+  name: string
+  address: string
+  town?: string
+  lat: number
+  lng: number
+  type: string
+  motorcycleAllowed?: boolean
+  carAllowed?: boolean
+  totalMotoLots?: number
+  covered?: boolean
+  seasonOnly?: boolean
+  pricingNotes?: string
+  openingHours?: string
+  entranceNotes?: string
+  lastAvailabilitySyncAt?: Date | null
+}
+
 async function main() {
   // Clear existing data
   await prisma.photo.deleteMany()
   await prisma.carpark.deleteMany()
 
   // Sample Singapore carparks with motorcycle parking
-  const carparks = [
+  const carparks: SeedCarpark[] = [
     // Orchard/CBD area
     {
       name: "Orchard Central Motorcycle Parking",
