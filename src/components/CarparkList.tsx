@@ -11,8 +11,8 @@ export default function CarparkList({ carparks, selectedCarparkId, onSelectCarpa
   if (carparks.length === 0) {
     return (
       <div className="text-center py-8">
-        <p className="text-slate-300">No motorcycle parking found nearby.</p>
-        <p className="text-sm text-slate-400 mt-1">Try searching in a different area.</p>
+        <p className="text-slate-700 dark:text-slate-300">No motorcycle parking found nearby.</p>
+        <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">Try searching in a different area.</p>
       </div>
     )
   }

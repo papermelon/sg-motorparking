@@ -1,15 +1,24 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
 :root {
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --surface: #e2e8f0;
+  --surface-elevated: #cbd5e1;
+  --border: #cbd5e1;
+  --primary: #3b82f6;
+  --primary-hover: #2563eb;
+  --accent: #10b981;
+  --accent-hover: #059669;
+}
+
+.dark {
   --background: #0f172a;
   --foreground: #f1f5f9;
   --surface: #1e293b;
   --surface-elevated: #334155;
   --border: #334155;
-  --primary: #3b82f6;
-  --primary-hover: #2563eb;
-  --accent: #10b981;
-  --accent-hover: #059669;
 }
 
 @theme inline {
@@ -26,7 +35,7 @@ body {
   min-height: 100vh;
 }
 
-/* Custom scrollbar for dark theme */
+/* Themed scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;

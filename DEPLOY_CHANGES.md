@@ -9,7 +9,7 @@ If your Vercel project is connected to a GitHub repository, it will automaticall
 ### Step 1: Commit Your Changes
 
 ```bash
-cd /Users/ngawangchime/Desktop/Developer/SGMotorbikeParking
+cd "/Users/ngawangchime/Desktop/Developer Projects/SGMotorbikeParking"
 
 # Add the changed files
 git add src/app/page.tsx src/app/layout.tsx README.md DEPLOYMENT.md
@@ -89,4 +89,3 @@ After deployment completes:
 1. Check Vercel deployment logs for errors
 2. Make sure all environment variables are set correctly
 3. Verify Prisma client is generating correctly
-

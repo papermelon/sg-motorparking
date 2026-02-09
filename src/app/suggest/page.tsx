@@ -83,11 +83,11 @@ function SuggestForm() {
 
   if (submitted) {
     return (
-      <div className="min-h-screen bg-slate-900 flex items-center justify-center px-4">
-        <div className="max-w-md w-full bg-slate-800 rounded-xl shadow-2xl border border-slate-700/50 p-8 text-center">
+      <div className="min-h-screen bg-slate-50 dark:bg-slate-900 flex items-center justify-center px-4">
+        <div className="max-w-md w-full bg-white dark:bg-slate-800 rounded-xl shadow-2xl border border-slate-200 dark:border-slate-700/50 p-8 text-center">
           <div className="text-5xl mb-4">✅</div>
-          <h1 className="text-2xl font-bold text-white mb-2">Thank You!</h1>
-          <p className="text-slate-300 mb-6">
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">Thank You!</h1>
+          <p className="text-slate-700 dark:text-slate-300 mb-6">
             Your suggestion has been submitted for review. Once verified, it will appear on the map.
           </p>
           <div className="space-x-4">
@@ -116,7 +116,7 @@ function SuggestForm() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-900 py-8">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-900 py-8">
       <div className="max-w-2xl mx-auto px-4">
         <div className="mb-8">
           <Link href="/" className="text-blue-400 hover:text-blue-300 transition-colors">
@@ -124,17 +124,17 @@ function SuggestForm() {
           </Link>
         </div>
 
-        <div className="bg-slate-800 rounded-xl shadow-2xl border border-slate-700/50 p-6">
+        <div className="bg-white dark:bg-slate-800 rounded-xl shadow-2xl border border-slate-200 dark:border-slate-700/50 p-6">
           <div className="text-center mb-6">
-            <h1 className="text-2xl font-bold text-white">Suggest a Parking Location</h1>
-            <p className="text-slate-300 mt-2">
+            <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Suggest a Parking Location</h1>
+            <p className="text-slate-700 dark:text-slate-300 mt-2">
               Help fellow riders by adding motorcycle parking spots you know about.
               Submissions are reviewed before going live.
             </p>
           </div>
 
           {error && (
-            <div className="mb-4 p-3 bg-red-900/30 border border-red-700/50 rounded-lg text-red-300 text-sm">
+            <div className="mb-4 p-3 bg-red-100 dark:bg-red-900/30 border border-red-300 dark:border-red-700/50 rounded-lg text-red-700 dark:text-red-300 text-sm">
               {error}
             </div>
           )}
@@ -142,10 +142,10 @@ function SuggestForm() {
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Basic Info */}
             <div className="space-y-4">
-              <h2 className="font-semibold text-white border-b border-slate-700/50 pb-2">📍 Location Details</h2>
+              <h2 className="font-semibold text-slate-900 dark:text-white border-b border-slate-200 dark:border-slate-700/50 pb-2">📍 Location Details</h2>
               
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-1">
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                   Location Name *
                 </label>
                 <input
@@ -153,19 +153,19 @@ function SuggestForm() {
                   required
                   value={formData.name}
                   onChange={e => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-3 py-2 bg-slate-700/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-3 py-2 bg-slate-100 dark:bg-slate-700/50 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-900 dark:text-white placeholder-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   placeholder="e.g., Bukit Batok MRT Motorcycle Parking"
                 />
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-1">Town *</label>
+                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Town *</label>
                   <select
                     required
                     value={formData.town}
                     onChange={e => setFormData({ ...formData, town: e.target.value })}
-                    className="w-full px-3 py-2 bg-slate-700/50 border border-slate-600 rounded-lg text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-3 py-2 bg-slate-100 dark:bg-slate-700/50 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   >
                     <option value="">Select Town</option>
                     {SINGAPORE_TOWNS.map(town => (
@@ -174,12 +174,12 @@ function SuggestForm() {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-1">Type *</label>
+                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Type *</label>
                   <select
                     required
                     value={formData.type}
                     onChange={e => setFormData({ ...formData, type: e.target.value })}
-                    className="w-full px-3 py-2 bg-slate-700/50 border border-slate-600 rounded-lg text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-3 py-2 bg-slate-100 dark:bg-slate-700/50 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   >
                     <option value="HDB">HDB Carpark</option>
                     <option value="MALL">Shopping Mall</option>
@@ -191,13 +191,13 @@ function SuggestForm() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-1">Address *</label>
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Address *</label>
                 <input
                   type="text"
                   required
                   value={formData.address}
                   onChange={e => setFormData({ ...formData, address: e.target.value })}
-                  className="w-full px-3 py-2 bg-slate-700/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-3 py-2 bg-slate-100 dark:bg-slate-700/50 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-900 dark:text-white placeholder-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   placeholder="e.g., 10 Bukit Batok Central, Singapore 658718"
                 />
               </div>
@@ -212,30 +212,30 @@ function SuggestForm() {
 
             {/* Parking Details */}
             <div className="space-y-4">
-              <h2 className="font-semibold text-white border-b border-slate-700/50 pb-2">🏍️ Parking Details</h2>
+              <h2 className="font-semibold text-slate-900 dark:text-white border-b border-slate-200 dark:border-slate-700/50 pb-2">🏍️ Parking Details</h2>
               
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-1">
+                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                     Motorcycle Lots
                   </label>
                   <input
                     type="number"
                     value={formData.totalMotoLots}
                     onChange={e => setFormData({ ...formData, totalMotoLots: e.target.value })}
-                    className="w-full px-3 py-2 bg-slate-700/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-3 py-2 bg-slate-100 dark:bg-slate-700/50 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-900 dark:text-white placeholder-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     placeholder="Approx. number"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-1">
+                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                     Pricing
                   </label>
                   <input
                     type="text"
                     value={formData.pricingNotes}
                     onChange={e => setFormData({ ...formData, pricingNotes: e.target.value })}
-                    className="w-full px-3 py-2 bg-slate-700/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-3 py-2 bg-slate-100 dark:bg-slate-700/50 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-900 dark:text-white placeholder-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     placeholder="e.g., $0.65 per 30 min"
                   />
                 </div>
@@ -272,13 +272,13 @@ function SuggestForm() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-1">
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                   Entrance Notes (optional)
                 </label>
                 <textarea
                   value={formData.entranceNotes}
                   onChange={e => setFormData({ ...formData, entranceNotes: e.target.value })}
-                  className="w-full px-3 py-2 bg-slate-700/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-3 py-2 bg-slate-100 dark:bg-slate-700/50 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-900 dark:text-white placeholder-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   rows={2}
                   placeholder="e.g., Enter via back alley behind the coffee shop"
                 />
@@ -287,8 +287,8 @@ function SuggestForm() {
 
             {/* Photos */}
             <div className="space-y-4">
-              <h2 className="font-semibold text-white border-b border-slate-700/50 pb-2">📸 Photos (optional)</h2>
-              <p className="text-sm text-slate-300">
+              <h2 className="font-semibold text-slate-900 dark:text-white border-b border-slate-200 dark:border-slate-700/50 pb-2">📸 Photos (optional)</h2>
+              <p className="text-sm text-slate-700 dark:text-slate-300">
                 Add up to 2 photos. You can use image URLs from Imgur, Google Photos (shared link), or any image hosting service.
               </p>
               
@@ -298,14 +298,14 @@ function SuggestForm() {
                     type="url"
                     value={formData.photoUrl1}
                     onChange={e => setFormData({ ...formData, photoUrl1: e.target.value })}
-                    className="w-full px-3 py-2 bg-slate-700/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-3 py-2 bg-slate-100 dark:bg-slate-700/50 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-900 dark:text-white placeholder-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     placeholder="Photo 1 URL"
                   />
                   <input
                     type="text"
                     value={formData.photoCaption1}
                     onChange={e => setFormData({ ...formData, photoCaption1: e.target.value })}
-                    className="w-full px-3 py-2 bg-slate-700/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-3 py-2 bg-slate-100 dark:bg-slate-700/50 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-900 dark:text-white placeholder-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     placeholder="Caption (e.g., Entrance view)"
                   />
                 </div>
@@ -321,14 +321,14 @@ function SuggestForm() {
                     type="url"
                     value={formData.photoUrl2}
                     onChange={e => setFormData({ ...formData, photoUrl2: e.target.value })}
-                    className="w-full px-3 py-2 bg-slate-700/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-3 py-2 bg-slate-100 dark:bg-slate-700/50 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-900 dark:text-white placeholder-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     placeholder="Photo 2 URL"
                   />
                   <input
                     type="text"
                     value={formData.photoCaption2}
                     onChange={e => setFormData({ ...formData, photoCaption2: e.target.value })}
-                    className="w-full px-3 py-2 bg-slate-700/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-3 py-2 bg-slate-100 dark:bg-slate-700/50 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-900 dark:text-white placeholder-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     placeholder="Caption"
                   />
                 </div>
@@ -341,29 +341,29 @@ function SuggestForm() {
 
             {/* Submitter Info */}
             <div className="space-y-4">
-              <h2 className="font-semibold text-white border-b border-slate-700/50 pb-2">👤 Your Info (optional)</h2>
-              <p className="text-sm text-slate-300">
+              <h2 className="font-semibold text-slate-900 dark:text-white border-b border-slate-200 dark:border-slate-700/50 pb-2">👤 Your Info (optional)</h2>
+              <p className="text-sm text-slate-700 dark:text-slate-300">
                 Leave your name if you'd like to be credited. Email is only for verification if needed.
               </p>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-1">Name</label>
+                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Name</label>
                   <input
                     type="text"
                     value={formData.submitterName}
                     onChange={e => setFormData({ ...formData, submitterName: e.target.value })}
-                    className="w-full px-3 py-2 bg-slate-700/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-3 py-2 bg-slate-100 dark:bg-slate-700/50 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-900 dark:text-white placeholder-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     placeholder="Your name (optional)"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-1">Email</label>
+                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Email</label>
                   <input
                     type="email"
                     value={formData.submitterEmail}
                     onChange={e => setFormData({ ...formData, submitterEmail: e.target.value })}
-                    className="w-full px-3 py-2 bg-slate-700/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-3 py-2 bg-slate-100 dark:bg-slate-700/50 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-900 dark:text-white placeholder-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     placeholder="your@email.com (optional)"
                   />
                 </div>

@@ -82,20 +82,20 @@ export default function LocationPicker({ lat, lng, onLocationChange }: LocationP
     <div className="space-y-4">
       {/* Google Maps Link Input */}
       <div>
-        <label className="block text-sm font-medium text-slate-300 mb-1">
+        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
           📍 Location (paste Google Maps link)
         </label>
         <input
           type="text"
           value={mapsLink}
           onChange={e => handleLinkPaste(e.target.value)}
-          className="w-full px-3 py-2 bg-slate-700/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          className="w-full px-3 py-2 bg-slate-100 dark:bg-slate-700/50 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-900 dark:text-white placeholder-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           placeholder="Paste Google Maps link here (e.g., https://maps.google.com/...)"
         />
         {linkError && (
           <p className="text-xs text-orange-400 mt-1">{linkError}</p>
         )}
-        <p className="text-xs text-slate-400 mt-1">
+        <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">
           Open Google Maps, find the exact location, right-click and select "Share" or copy the URL from your browser.
         </p>
       </div>
@@ -103,10 +103,10 @@ export default function LocationPicker({ lat, lng, onLocationChange }: LocationP
       {/* Map Picker */}
       {isLoaded ? (
         <div>
-          <label className="block text-sm font-medium text-slate-300 mb-1">
+          <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
             Or click on the map to select location
           </label>
-          <div className="border border-slate-600 rounded-lg overflow-hidden">
+          <div className="border border-slate-300 dark:border-slate-600 rounded-lg overflow-hidden">
             <GoogleMap
               mapContainerStyle={containerStyle}
               center={mapCenter}
@@ -138,12 +138,12 @@ export default function LocationPicker({ lat, lng, onLocationChange }: LocationP
           {hasValidCoords && (
             <p className="text-xs text-emerald-400 mt-1">
               ✓ Location selected: {currentLat!.toFixed(6)}, {currentLng!.toFixed(6)}
-              <span className="text-slate-400 ml-2">(drag marker to adjust)</span>
+              <span className="text-slate-600 dark:text-slate-400 ml-2">(drag marker to adjust)</span>
             </p>
           )}
         </div>
       ) : (
-        <div className="bg-slate-800 rounded-lg p-8 text-center text-slate-400 border border-slate-700/50">
+        <div className="bg-white dark:bg-slate-800 rounded-lg p-8 text-center text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700/50">
           Loading map...
         </div>
       )}
@@ -153,7 +153,7 @@ export default function LocationPicker({ lat, lng, onLocationChange }: LocationP
         <button
           type="button"
           onClick={() => setShowAdvanced(!showAdvanced)}
-          className="text-sm text-slate-400 hover:text-slate-300 transition-colors"
+          className="text-sm text-slate-600 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300 transition-colors"
         >
           {showAdvanced ? '▼' : '▶'} Advanced: Enter coordinates manually
         </button>
@@ -161,24 +161,24 @@ export default function LocationPicker({ lat, lng, onLocationChange }: LocationP
         {showAdvanced && (
           <div className="grid grid-cols-2 gap-4 mt-2">
             <div>
-              <label className="block text-xs font-medium text-slate-300 mb-1">Latitude</label>
+              <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">Latitude</label>
               <input
                 type="number"
                 step="any"
                 value={lat}
                 onChange={e => handleManualChange('lat', e.target.value)}
-                className="w-full px-3 py-2 bg-slate-700/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+                className="w-full px-3 py-2 bg-slate-100 dark:bg-slate-700/50 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-900 dark:text-white placeholder-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
                 placeholder="e.g., 1.3489"
               />
             </div>
             <div>
-              <label className="block text-xs font-medium text-slate-300 mb-1">Longitude</label>
+              <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">Longitude</label>
               <input
                 type="number"
                 step="any"
                 value={lng}
                 onChange={e => handleManualChange('lng', e.target.value)}
-                className="w-full px-3 py-2 bg-slate-700/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+                className="w-full px-3 py-2 bg-slate-100 dark:bg-slate-700/50 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-900 dark:text-white placeholder-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
                 placeholder="e.g., 103.7495"
               />
             </div>
